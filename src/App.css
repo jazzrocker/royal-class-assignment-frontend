@@ -1,0 +1,34 @@
+:root {
+  --bgcolor: #181818;
+  --white: #c4c4c4;
+  /* --purple: rgba(104, 72, 233, 0.795); */
+  --themeColor: rgba(108, 88, 185, 0.73);
+  --clouds: #87ceeb;
+  --clouds: #eef34bec;
+}
+body {
+  font-family: "Roboto Mono", monospace;
+}
+
+a {
+  font-family: "Roboto", monospace;
+}
+
+p {
+  font-family: "Ubuntu", sans-serif;
+}
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.pulse-animation {
+  animation: pulse 1500ms ease-in-out infinite;
+}
