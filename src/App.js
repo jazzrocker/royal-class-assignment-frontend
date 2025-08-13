@@ -32,15 +32,19 @@ function App() {
     socketService.on('global:notification',(data)=>{
       notificationToast(data?.notification);
     })
+    socketService.on(`user:${userData?._id}`,(data)=>{
+      notificationToast(data?.notification);
+    })
     socketService.on('auctionEnd',(data)=>{
       notificationToast(data?.notification);
     })
     return () => {
       socketService.offAny(logAllSocketEvents);
-      socketService.off('global:notification');
-      socketService.off('auctionEnd');
+      socketService.off(`user:${userData?._id}`);
+      socketService.off("global:notification");
+      socketService.off("auctionEnd");
     };
-  }, []);
+  }, [isAuthenticated]);
 
   return (
     <>

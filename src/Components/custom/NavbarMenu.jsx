@@ -72,7 +72,7 @@ export const NavbarMenu = () => {
     const hasError = Object.values(newError).some((val) => val === true);
     if (hasError) return;
     console.log(auctionForm);
-
+    auctionForm.startingBid = Number(auctionForm.startingBid);
     dispatch(
       createAuctions({
         payload: auctionForm,

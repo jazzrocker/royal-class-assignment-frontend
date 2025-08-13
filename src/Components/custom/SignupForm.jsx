@@ -116,13 +116,15 @@ export const SignupForm = () => {
     }
     if (!hasError) {
       setIsDisabled(true);
+      formData.cpassword = undefined;
+      
       dispatch(
         signup({
           payload: formData,
           callback: (data) => {
             if (data?.meta?.code === 200) {
               setIsDisabled(false);
-              navigate("/verifyemail");
+              navigate("/login");
             } else {
               setIsDisabled(false);
             }

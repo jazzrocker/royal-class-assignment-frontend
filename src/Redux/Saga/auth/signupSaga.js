@@ -11,18 +11,17 @@ function* signupRequest(action) {
     const { data } = yield notifyPromise(
       API.post("/auth/signup", action?.payload?.payload)
     );
-
     if (data?.meta?.code === 200) {
       yield put(signupSuccess(data?.data?.userData));
-      yield put(loginSuccess(data?.data?.userData));
-      yield call(setLocalStorageItem, "userData", JSON.stringify(data?.data?.userData));
-      yield call(setLocalStorageItem, "token", data?.data?.token);
+      // yield put(loginSuccess(data?.data?.userData));
+      // yield call(setLocalStorageItem, "userData", JSON.stringify(data?.data?.userData));
+      // yield call(setLocalStorageItem, "token", data?.data?.token);
       if (action?.payload?.callback) {
         yield call(action.payload.callback, data);
       }
     } else {
       if (action?.payload?.callback) {
-        yield call(action.payload.callback, data);
+        yield call(action.payload.callback, data?.data);
       }
       yield put(signupFailure());
     }

@@ -41,15 +41,20 @@ export const AuctionRoom = () => {
 
   useEffect(() => {
     socketService.on(`auctionRoom:${auctionId}:notification`, (data) => {
-      notificationToast(data?.message);
+      notificationToast(data?.notification);
+    });
+    socketService.on("room-left", (data) => {
+      notificationToast(`You have left the auction ${location.state?.title}`);
+      navigate("/");
     });
     return () => {
       socketService.off(`auctionRoom:${auctionId}:notification`);
+      socketService.off("room-left");
     };
   }, [auctionId]);
 
   const handleLeaveAuction = () => {
-    console.log("leave auction");
+    socketService.emit("leaveAuction", { auctionId });
   };
 
   return (

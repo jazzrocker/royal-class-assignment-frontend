@@ -10,7 +10,7 @@ import { notifyError } from "../../../Utils/Helper";
 function* createAuctionsRequest(action) {
   try {
     const { payload } = action?.payload;
-    const { data } = yield API.post("/auctions/create", payload);
+    const { data } = yield API.post("/auction/create", payload);
     if (data?.meta?.code === 200) {
       yield put(createAuctionsSuccess(data?.data));
       if (action?.payload?.callback) {
